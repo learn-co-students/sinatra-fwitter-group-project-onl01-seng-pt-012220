@@ -1,0 +1,22 @@
+<h1>Tweet</h1>
+
+<p>
+    Submitter:
+    <% if @tweet.user %>
+        <%= @tweet.user.username %>
+    <%else%>
+        unkown
+    <%end%>
+    <br>
+    Content: <%= @tweet.content %>
+</p>
+
+<form method="POST" action="/tweets/<%= @tweet.id %>">
+<input id="hidden" type="hidden" name="_method" value="delete">
+<input id="submit" type="submit" value="Delete Tweet">
+</form>
+
+<form method="POST" action="/tweets/<%= @tweet.id %>/edit">
+<input id="hidden" type="hidden" name="_method" value="patch">
+<input id="submit" type="submit" value="Edit Tweet">
+</form>

@@ -1,0 +1,15 @@
+<h1>Tweets</h1>
+
+<% Tweet.all.each do |tweet| %> 
+    <p>
+        Submitter:
+        <% if tweet.user %>
+            <%= tweet.user.username %>
+        <%else%>
+            unkown
+        <%end%>
+        <br>
+        Content: <%= tweet.content %>
+    </p>
+<% end %>
+
