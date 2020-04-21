@@ -1,55 +1,61 @@
 class UsersController < ApplicationController
 
     #Users can create an account
-    get '/users/new' do
-        erb :'users/new'
+    get '/signup' do
+        if logged_in?(session)
+             redirect to "/tweets"
+        else
+            erb :'/users/signup'
+        end
     end
 
     #New accounts must have a username, email and password
-    post '/users/new' do 
+    post '/signup' do 
         if params[:username] == "" || params[:email] == "" || params[:password] == ""
-            redirect to "/error"
-        end
-
-        user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
-        binding.pry
-        if user.save
-          #login
-          redirect to "/tweets"#redirect to all tweets?
+            redirect to "/signup"
         else
-          redirect "/error"
+            user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
+            user.save
+            session[:user_id] = user.id
+            redirect to "/tweets"
         end
     end
 
     
     #Users can log in and log out
-    get '/users/login' do
-        erb :'users/login'
+    get '/login' do
+        if logged_in?(session)
+            redirect to "/tweets"
+        else
+            erb :'users/login'
+        end
     end
 
-    post '/users/login' do 
-        user = User.find_by(:email => params[:email])
- 
+    post '/login' do 
+        user = User.find_by(:username => params[:username])
+        
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id
-            redirect "/tweets" #view all tweets?
+            
+            redirect "/tweets" 
         else
             redirect "/error"
         end
     end
 
-    get '/users/logout' do
-        erb :'users/logout'
+    get '/logout' do
+        if logged_in?(session)
+            session.destroy
+            redirect to "/login"
+        else
+            redirect to "/"
+        end
     end
 
-    post '/users/logout' do 
-        session.destroy
-        redirect "/" #view all tweets?
+    get "/users/:slug" do
+        @user = User.find_by_slug(params[:slug])
+        erb :"/users/show"
     end
-
-    
-    
-
 end
 
 

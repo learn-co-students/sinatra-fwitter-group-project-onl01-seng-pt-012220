@@ -5,7 +5,7 @@ class TweetsController < ApplicationController
         if logged_in?(session)
             erb :'/tweets/new'
         else
-            erb :'/users/login'
+            redirect to "/login"
         end
     end
 
@@ -17,30 +17,57 @@ class TweetsController < ApplicationController
             @tweet.save
             redirect "/tweets"
         else
-            redirect "/error"
+            redirect "/tweets/new"
         end
     end
     
-    
-    get "/tweets/:id/edit" do 
+    get "/tweets/:id" do 
+        if logged_in?(session)
+            @tweet = Tweet.find_by_id(params[:id])
+            erb :'/tweets/show'
+        else
+            redirect to "/login"
+        end
+        
+    end
+
+    delete '/tweets/:id' do
         @tweet = Tweet.find_by_id(params[:id])
-        erb :'/tweets/edit'
+        if @tweet.user == current_user(session)
+            @tweet.delete
+        end
+        redirect "/tweets"
+    end
+
+    get "/tweets/:id/edit" do 
+        if logged_in?(session)
+            @tweet = Tweet.find_by_id(params[:id])
+            erb :'/tweets/edit'
+        else 
+            redirect "/login"
+        end
     end
     
     patch '/tweets/:id/edit' do
         @tweet = Tweet.find_by_id(params[:id])
-        
-        #Users can edit/delete only their tweets
-        if @tweet.user == current_user(session)
+    
+        if @tweet.user == current_user(session) && !params[:content].empty?
             @tweet.content = params[:content]
             @tweet.save
+            redirect "/tweets"
+        else
+            redirect "/tweets/#{@tweet.id}/edit"
         end
-        redirect "/tweets"
+        
     end
     
     #Users can view other users tweets
     get "/tweets" do 
-        erb :'/tweets/tweets'
+        if logged_in?(session)
+            erb :'/tweets/tweets'
+        else
+            redirect to "/login"
+        end
     end
 
 end

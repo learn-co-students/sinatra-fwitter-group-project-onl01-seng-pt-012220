@@ -4,10 +4,11 @@
     <title>Fwitter</title>
   </head>
   <body>
+  Welcome to Fwitter
     <%if logged_in?(session) %>
-    Welcome <%= current_user(session).username %>
+    Welcome, <%= current_user(session).username %>
     <% else %>
-    <a href="/users/login">Log in</a> <a href="/users/new">Sign up</a>
+    Welcome, <a href="/login">Log in</a> <a href="/signup">Sign up</a>
     <% end %>
     <%= yield %>
   </body>
