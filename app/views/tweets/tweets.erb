@@ -1,4 +1,9 @@
+
 <h1>Welcome, <%=@user.username%></h1>
-<%@tweets.each do |tweet|%>
-  <p><%=tweet.content%></p>
+<%if @tweets%>
+  <%@tweets.each do |tweet|%>
+    <p><%=tweet.content%></p>
+  <%end%>
+<%else%>
+  <p>You have no Tweets</p>
 <%end%>
