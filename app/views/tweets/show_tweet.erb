@@ -4,7 +4,7 @@
   <label for="delete">Delete Tweet</label><br>
   <input type="submit" id="delete" value="Delete Tweet">
 </form>
-<form method="post" action="/tweets/<%=@tweet.id%>/edit" >
+<form method="get" action="/tweets/<%=@tweet.id%>/edit" >
   <label for="edit">Edit Tweet</label><br>
   <input type="submit" id="edit" value="Edit Tweet">
 </form>
