@@ -1,12 +1,10 @@
 
 <h1>Welcome, <%=@user.username%></h1>
-<<<<<<< HEAD
 <%if @tweets%>
   <%@tweets.each do |tweet|%>
-    <p><%=tweet.content%></p>
+    <a href="/tweets/<%=tweet.id%>"><%=tweet.content%></a><br>
   <%end%>
 <%end%>
-=======
 <!-- # <%if @tweets%>
 #   <%@tweets.each do |tweet|%>
 #     <p><%=tweet.content%></p>
@@ -14,4 +12,3 @@
 # <%else%>
 #   <p>You have no Tweets</p>
 # <%end%> -->
->>>>>>> ab9775b76e61d0c7d6f553057566ef32fd63bf6f

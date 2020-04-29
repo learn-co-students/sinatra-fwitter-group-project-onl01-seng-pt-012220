@@ -37,16 +37,6 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/tweets' do
-    if logged_in?
-      @user = current_user
-      @tweets = Tweet.all
-      erb :'tweets/tweets'
-    else
-      redirect '/login'
-    end
-  end
-
   get '/users/:slug' do
     @user = User.find_by_slug(params["slug"])
     @tweets = @user.tweets

@@ -1,10 +1,12 @@
-
   <form action='/tweets' method="post">
     Content:
     <input type="text" name="content" value="i am a boss at tweeting"><br>
     Create Your Tweet:
-
     <input type="submit" name="submit" id="submit">
+  </form>
+  <form action='/tweets/:id/delete' method="delete">
     <button type="delete" id="delete" value="Delete Tweet">Delete Tweet</button>
+  </form>
+  <form action="/tweets/:id/edit" method="post">
     <button type="submit" id="edit" value="Edit Tweet">Edit Tweet</button>
   </form>
