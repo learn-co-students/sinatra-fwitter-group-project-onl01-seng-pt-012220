@@ -38,25 +38,16 @@ class UsersController < ApplicationController
 
   get '/logout' do
     if Helpers.is_logged_in?(session)
-      session.clear
-      redirect to '/login'
+      erb :'users/logout'
     else
       redirect to '/'
     end
   end
 
-  # get '/logout' do
-  #   if Helpers.is_logged_in?(session)
-  #     erb :'users/logout'
-  #   else
-  #     redirect to '/'
-  #   end
-  # end
-  #
-  # post'/logout' do
-  #   session.clear
-  #   redirect to '/login'
-  # end
+  post'/logout' do
+    session.clear
+    redirect to '/login'
+  end
 
   get '/users/:slug' do
       @user = User.find_by(params[:slug])
