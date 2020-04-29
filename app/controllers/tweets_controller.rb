@@ -41,9 +41,7 @@ class TweetsController < ApplicationController
   end
 
   patch '/tweets/:id' do
-    binding.pry
     @tweet = Tweet.find_by_id(params[:id])
-    binding.pry
     if !params["content"].empty?
       @tweet.content = params[:content]
       @tweet.save
@@ -54,6 +52,10 @@ class TweetsController < ApplicationController
   end
 
   delete '/tweets/:id' do
-    Tweet.destroy(params[:id])
+    if logged_in?
+      tweet = Tweet.find_by_id(params[:id])
+      tweet.destroy
+    end
+    redirect '/tweets'
   end
 end

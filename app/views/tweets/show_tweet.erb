@@ -1,7 +1,7 @@
 <h3><%=@user.username%></h3>
 <p><%=@tweet.content%></p>
 
-<form method="delete" action="/tweets/<%@tweet.id%>">
+<form method="delete" action="/tweets/<%=@tweet.id%>">
   <label for="delete">Delete Tweet</label><br>
   <input type="submit" id="delete" value="Delete Tweet">
 </form>
