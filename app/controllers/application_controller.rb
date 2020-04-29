@@ -96,12 +96,16 @@ class ApplicationController < Sinatra::Base
       if @tweet.is_a?(Tweet)
         redirect '/tweets/show_tweet'
       else
-        redirect '/tweets'
+        redirect '/tweets/new'
       end
     else
       redirect '/login'
     end
+  end
 
+  delete '/tweets' do
+    binding.pry
+    Tweet.destroy(@tweet.id)
     binding.pry
   end
 
