@@ -1,3 +1,4 @@
+<%if @user.is_a?(User)&&@tweet.is_a?(Tweet)%>
 <h3><%=@user.username%></h3>
 <p><%=@tweet.content%></p>
 <form method="delete" action="/tweets/<%=@tweet.id%>/delete" >
@@ -8,3 +9,6 @@
   <label for="edit">Edit Tweet</label><br>
   <input type="submit" id="edit" value="Edit Tweet">
 </form>
+<%else%>
+  <%redirect "/tweets"%>
+<%end%>
