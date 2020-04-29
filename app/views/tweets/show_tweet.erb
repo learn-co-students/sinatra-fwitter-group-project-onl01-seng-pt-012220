@@ -1,6 +1,10 @@
 <h3><%=@user.username%></h3>
 <p><%=@tweet.content%></p>
-<form method="delete" action="/tweets/<%=@tweet.id%/delete>">
+<form method="delete" action="/tweets/<%=@tweet.id%>/delete" >
   <label for="delete">Delete Tweet</label><br>
   <input type="submit" id="delete" value="Delete Tweet">
+</form>
+<form method="post" action="/tweets/<%=@tweet.id%>/edit" >
+  <label for="edit">Edit Tweet</label><br>
+  <input type="submit" id="edit" value="Edit Tweet">
 </form>
