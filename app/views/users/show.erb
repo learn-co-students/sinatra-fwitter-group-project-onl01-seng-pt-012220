@@ -1,0 +1,12 @@
+<h2>Welcome, <%=@user.username%> </h2>
+
+<% if @tweets != [] %>
+<h2> All your tweets <h2>
+<% @tweets.each do |tweet| %>
+    <%= @user.username %>: "<%=tweet.content%>" </br>
+    <%end%>
+<% else %>
+    No tweets! <a href="/tweets/new"> Create one </a> </br>
+<%end%>
+<h4><a href="/tweets/new"> Create a new tweet </a> </h4>
+<h4><a href="/tweets"> See all tweets</a> </h4></br>

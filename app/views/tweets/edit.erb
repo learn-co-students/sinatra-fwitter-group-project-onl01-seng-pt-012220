@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+ <body>
+    <h1>Edit your tweet below</h1>
+    <p>Current Content: <%=@tweet.content%></p>
+   <form method = "POST" action = patch "/tweets/:id">
+     <p>New Content: <input type = "text" name = "tweet[content]" id ="content"></p>
+     <input id="hidden" type="hidden" name="_method" value="PATCH">
+    <input type = "submit" id = "submit">
+   </form>
+
+ </body>
+</html>
