@@ -1,0 +1,11 @@
+<h2>Welcome, <%=@user.username%> </h2>
+
+<% if @tweets != [] %>
+<h2> View All Tweets <h2>
+<% @tweets.each do |tweet| %>
+    <% user = User.find_by(:id => tweet.user_id)%>
+    <%= user.username %>: "<%=tweet.content%>" </br>
+    <%end%>
+<% else %>
+    No tweets! <a href="/tweets/new"> Create one </a> </br>
+<%end%>
