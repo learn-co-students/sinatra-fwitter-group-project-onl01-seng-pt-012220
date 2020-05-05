@@ -1,0 +1,16 @@
+<h2><%= @user.username %>'s Tweets</h2>
+
+<% user_tweets = [] %>
+
+<% Tweet.all.each do |t| %>
+    <% if t.user_id == @user.id %>
+        <% user_tweets << t %>
+    <% end %>
+<% end %>
+
+    <ul>
+    <% user_tweets.each do |t| %>
+        <li> <%= t.content %> <br>
+             -- <%= User.find(t.user_id).username %></li>
+    <% end %>
+    </ul>
