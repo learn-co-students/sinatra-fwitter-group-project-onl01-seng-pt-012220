@@ -1,5 +1,3 @@
-<% if logged_in? %>
-
 <h2>Welcome, <%= current_user.username %></h2>
 
 <a href="/tweets/new">Create a Tweet</a>
@@ -11,7 +9,3 @@
          -- <%= User.find(t.user_id).username %></li>
 <% end %>
 </ul>
-
-<% else %>
-<% redirect to "/login" %>
-<% end %>
