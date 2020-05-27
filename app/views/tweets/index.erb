@@ -1,0 +1,11 @@
+<h2>Welcome, <%= current_user.username %></h2>
+
+<a href="/tweets/new">Create a Tweet</a>
+<a href="/logout">Log Out</a>
+
+<ul>
+<% @tweets.each do |t| %>
+    <li> <a href="/tweets/<%=t.id%>"><%= t.content %></a> <br>
+         -- <%= User.find(t.user_id).username %></li>
+<% end %>
+</ul>
